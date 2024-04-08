@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/react-query": "^1.2.9",
     "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "date-fns": "^2.30.0",
