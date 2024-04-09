@@ -37,7 +37,7 @@ export default function ForecastWeatherDetail(
         <div className=" flex flex-col gap-1 items-center">
           <WeatherIcon iconName={weatehrIcon} />
           <p>{date}</p>
-          <p className="text-sm">{day} </p>
+          <p className="text-sm">{day}</p>
         </div>
 
         {/*  */}

@@ -207,7 +207,7 @@ export default function Home() {
                     )}
                   />
                 </Container>
-                <Container className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
+                <Container className="bg-green-400  px-6 gap-4 justify-between overflow-x-auto">
                   <WeatherDetails
                     visability={metersToKilometers(
                       firstData?.visibility ?? 10000
@@ -239,7 +239,7 @@ export default function Home() {
             key={i}
             description={d?.weather[0].description ?? ""}
             weatehrIcon={d?.weather[0].icon ?? "01d"}
-            date={d ? format(parseISO(d.dt_txt), "dd.MM") : ""}
+            date={d ? format(parseISO(d.dt_txt), "dd.MM.yyyy") : ""}
             day={d ? format(parseISO(d.dt_txt), "EEEE") : ""}
             feels_like={d?.main.feels_like ?? 0}
             temp={d?.main.temp ?? 0}
