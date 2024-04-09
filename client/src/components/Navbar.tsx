@@ -96,7 +96,7 @@ export default function Navbar({ location }: Props) {
             <MdMyLocation
               title="Your Current Location"
               onClick={handleCurrentLocation}
-              className="text-2xl  text-green-400 hover:text-green-600 cursor-pointer"
+              className="text-2xl  text-green-400 hover:text-green-500 cursor-pointer"
             />
             <MdOutlineLocationOn className="text-3xl text-gray-500" />
             <p className="text-gray-500 text-s"> {location} </p>

@@ -106,9 +106,9 @@ const CityTable = () => {
       <table className="min-w-full divide-y border-solid border-4 border-black-800 ">
         <thead>
           <tr>
-            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">City Name</th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">Country</th>
-            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">Timezone</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-400 uppercase tracking-wider">City Name</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-400 uppercase tracking-wider">Country</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-400 uppercase tracking-wider">Timezone</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y border-solid border-4 border-black-800 ">
