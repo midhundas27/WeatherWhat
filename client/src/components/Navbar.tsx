@@ -12,8 +12,6 @@ import { useAtom } from "jotai";
 
 type Props = { location?: string };
 
-const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
-
 export default function Navbar({ location }: Props) {
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
@@ -122,25 +120,6 @@ export default function Navbar({ location }: Props) {
           </section>
         </div>
       </nav>
-      <section className="flex   max-w-7xl px-3 md:hidden ">
-        <div className="relative ">
-          {/* SearchBox */}
-
-          <SearchBox
-            value={city}
-            onSubmit={handleSubmiSearch}
-            onChange={(e) => handleInputChang(e.target.value)}
-          />
-          <SuggetionBox
-            {...{
-              showSuggestions,
-              suggestions,
-              handleSuggestionClick,
-              error
-            }}
-          />
-        </div>
-      </section>
     </>
   );
 }
