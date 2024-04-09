@@ -103,7 +103,7 @@ export default function Navbar({ location }: Props) {
             <div className="relative hidden md:flex">
               {/* SearchBox */}
 
-              <SearchBox
+              {/* <SearchBox
                 value={city}
                 onSubmit={handleSubmiSearch}
                 onChange={(e) => handleInputChang(e.target.value)}
@@ -115,7 +115,7 @@ export default function Navbar({ location }: Props) {
                   handleSuggestionClick,
                   error
                 }}
-              />
+              /> */}
             </div>
           </section>
         </div>
