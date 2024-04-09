@@ -4,6 +4,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 import SearchBox from "@/components/SearchBox";
+import NavbarTable from "@/components/NavbarTable";
 import { useInfiniteQuery } from 'react-query';
 
 interface City {
@@ -35,7 +36,7 @@ const CityTable = () => {
     async ({ pageParam = 0, queryKey }) => {
       const [searchTerm] = queryKey;
       const response = await axios.get<GeoData>(
-        `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=20&offset=${pageParam * 20}&q=${searchTerm}`
+        `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?order_by=name%20ASC&limit=100&timezone=Asia%2FKolkata&offset=${pageParam * 20}&q=${searchTerm}`
       );
       return response.data;
     },
@@ -73,9 +74,9 @@ const CityTable = () => {
 
   const filteredCities = data?.pages.flatMap((page) =>
     page.results.filter((city) =>
-      // city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
        city.ascii_name?.toLowerCase().includes(searchTerm.toLowerCase())
-      // || city.alternate_names?.some((name) => name.toLowerCase().includes(searchTerm.toLowerCase()))
+      || city.alternate_names?.some((name) => name.toLowerCase().includes(searchTerm.toLowerCase()))
     )
   );
 
@@ -85,6 +86,8 @@ const CityTable = () => {
   
 
   return (
+    <div>
+    <NavbarTable />
     <div className="container mx-auto px-4">
       {/* <input
         type="text"
@@ -92,38 +95,38 @@ const CityTable = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       /> */}
-      <SearchBox
+        
+      <SearchBox className="mt-10 mb-10"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onSubmit={handleSearch}
-              />
+                onSubmit={handleSearch} />  
       {/* <button onClick={handleSearch}>Search</button> */}
       {/* {status === 'loading' && <p>Loading...</p>} */}
       {filteredCities?.length === 0 && <p>No cities found</p>}
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y border-solid border-4 border-black-800 ">
         <thead>
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City Name</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timezone</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">City Name</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">Country</th>
+            <th className="px-6 py-3 text-left text-sm font-medium text-green-500 uppercase tracking-wider">Timezone</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y border-solid border-4 border-black-800 ">
           {filteredCities?.map((city, index) => {
             if (filteredCities.length === index + 1) {
               return (
                 <tr key={city.geoname_id} ref={lastCityRef}>
-                  <td><a href={`/weather`} target="_blank" rel="noopener noreferrer">{city.name}</a></td>
-                  <td>{city.cou_name_en}</td>
-                  <td>{city.timezone}</td>
+                  <td className='px-6'><a className='underline hover:text-yellow-400' href={`/weather`} rel="noopener noreferrer">{city.name}</a></td>
+                  <td className='px-6'>{city.cou_name_en}</td>
+                  <td className='px-6'>{city.timezone}</td>
                 </tr>
               );
             } else {
               return (
                 <tr key={city.geoname_id}>
-                  <td><a href={`/weather`} target="_blank" rel="noopener noreferrer">{city.name}</a></td>
-                  <td>{city.cou_name_en}</td>
-                  <td>{city.timezone}</td>
+                  <td className='px-6'><a className='underline hover:text-yellow-400' href={`/weather`} rel="noopener noreferrer">{city.name}</a></td>
+                  <td className='px-6'>{city.cou_name_en}</td>
+                  <td className='px-6'>{city.timezone}</td>
                 </tr>
               );
             }
@@ -131,6 +134,7 @@ const CityTable = () => {
         </tbody>
       </table>
       {/* {isFetchingNextPage && <p>Loading more...</p>} */}
+    </div>
     </div>
   );
 };
