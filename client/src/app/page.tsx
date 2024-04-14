@@ -96,10 +96,11 @@ const CityTable = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       /> */}
         
-      <SearchBox className="mt-10 mb-10"
+      <SearchBox className="mt-10 mb-5"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onSubmit={handleSearch} />  
+                onSubmit={handleSearch} />
+                <p className='text-center py-3 text-black-400'>Click on the city names to see weather out there!</p>  
       {/* <button onClick={handleSearch}>Search</button> */}
       {/* {status === 'loading' && <p>Loading...</p>} */}
       {filteredCities?.length === 0 && <p>No cities found</p>}
